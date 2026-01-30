@@ -39,7 +39,6 @@
                 <div class="nav-buttons">
                     <button class="btn" onclick="toggleLevelMap()">🗺️ Level Map</button>
                     <button class="btn secondary" onclick="showHint()">💡 Hint</button>
-                    <button class="btn success" id="runBtn" onclick="runCode()">▶️ Run My Code</button>
                     <button class="btn" id="nextBtn" onclick="nextStep()" disabled>Next ⭐</button>
                 </div>
             </header>
@@ -54,7 +53,7 @@
                     </div>
                     
                     <div class="hint-box" id="hintBox">
-                        <strong>💡 Cody's Tip:</strong>
+                        <strong>💡 Syrius' Tip:</strong>
                         <span id="hintText"></span>
                     </div>
 
@@ -66,14 +65,15 @@
 
                 <div class="card code-card">
                     <div class="editor-header">
-                        <span>📝 Python Editor</span>
+                        <span>Python Editor:</span>
+                        <button class="btn reset-btn" id="runBtn" onclick="runCode()">▶️ Run My Code</button>
                         <button class="btn reset-btn" onclick="resetCode()">🔄 Reset</button>
                     </div>
                     <textarea class="code-input" id="pythonCode" spellcheck="false"></textarea>
                     
                     <div class="output-box">
                         <div class="output-header">
-                            <span>💻 Output Console</span>
+                            <span>Output Console:</span>
                             <span class="running-indicator" id="runningIndicator">⚡ Running...</span>
                         </div>
                         <div class="output-content" id="output">Click "Run My Code" when ready!</div>

@@ -1,5 +1,5 @@
 // COMPLETE CURRICULUM - 6 Levels, 17 Steps
-// Teaches concepts without giving away answers
+// Concise technical instruction with Syrius
 
 const levels = [
     {
@@ -8,68 +8,67 @@ const levels = [
         steps: [
             {
                 mascot: "🐱",
-                instruction: "Hi! I'm Syrius. Welcome to Python! Computers are very literal machines - they need specific instructions to do anything. In Python, we use functions, which are like action words. The print() function is how we make the computer display text on the screen. The parentheses () are important - they tell Python 'hey, I'm about to give you something to work with!' Inside those parentheses, we put quotes '' around text to tell Python 'this is a string (text data), not code commands'. This is called a string literal - literally, the exact text we want to show.",
-                mission: "Type print('Hello World') to make the computer speak",
-                hint: "Type exactly: print(Anything you'd like) - lowercase print, parentheses (), quotes around the text",
-                starterCode: "# Type your first command below\n",
+                instruction: "The print() function outputs text to the console. It takes arguments inside parentheses. String literals (text data) must be wrapped in quotes ('single' or \"double\"). Without quotes, Python interprets the content as code (variables or keywords).",
+                mission: "Use print() to output the string 'Hello World'",
+                hint: "Syntax: print('Hello World')",
+                starterCode: "# Output a string\n",
                 validator: {
                     required: ["print(", "Hello World", ")"],
                     customCheck: (code) => {
-                        if (!code.includes("print(")) return { pass: false, msg: "Use print() with parentheses" };
-                        if (!code.includes("'") && !code.includes('"')) return { pass: false, msg: "Put quotes around your text!" };
+                        if (!code.includes("print(")) return { pass: false, msg: "Missing print() function call" };
+                        if (!code.includes("'") && !code.includes('"')) return { pass: false, msg: "String requires quotation marks" };
                         return { pass: true };
                     }
                 }
             },
             {
                 mascot: "🐱",
-                instruction: "Excellent! You just called your first function. Now let's understand what you did: print is the function name - it tells Python which action to perform. The () are the call operator - they tell Python to actually execute that action right now. The 'Hello World' inside is called an argument - it's the data we pass to the function. Arguments go inside the parentheses. The quotes define a string data type. You can replace the text between quotes with anything you want - your name, a message, anything! This is called string concatenation of values.",
-                mission: "Change the code to print your own name instead of Hello World",
-                hint: "Replace Hello World with your name inside the same quotes",
-                starterCode: "# Change the message\n",
+                instruction: "String literals can contain any text between the quotes. Change the argument to output different text. The quotes define where the string starts and ends.",
+                mission: "Modify the print argument to output your name",
+                hint: "Replace the text between quotes with your name",
+                starterCode: "# Modify the string\n",
                 validator: {
                     required: ["print("],
                     forbiddenCopy: ["Hello World"],
                     checkOutput: (out, code) => {
-                        // Ensure they didn't just keep Hello World
                         return !out.includes("Hello World") && out.length > 0;
                     }
                 }
             },
             {
                 mascot: "🐱",
-                instruction: "Now let's learn about data types! Python distinguishes between text (strings) and numbers (integers). When you put quotes around something, Python treats it as a string - even if it looks like a number. But if you write a number without quotes, Python recognizes it as an integer (whole number) or float (decimal number). This matters because numbers can do math, but number-strings can't! When you print a raw number like 2024, Python converts it to its text representation for display, but internally it knows it's a number. Try printing 2024 without any quotes.",
-                mission: "Print the number 2024 (no quotes this time!)",
-                hint: "Numbers don't need quotes! Just print(2024)",
-                starterCode: "# Print a number\n",
+                instruction: "Integers are whole numbers. Unlike strings, they do not use quotes. Python distinguishes between numeric types and string types. print() converts the integer to its string representation for output.",
+                mission: "Print the integer 2024 without quotes",
+                hint: "Numeric syntax: print(2024)",
+                starterCode: "# Output an integer\n",
                 validator: {
                     required: ["print(", "2024", ")"],
                     forbidden: ["'", '"'],
                     checkOutput: (out) => out.includes("2024"),
-                    message: "Don't use quotes around numbers!"
+                    message: "Remove quotation marks for numeric literals"
                 }
             }
         ]
     },
     {
-        title: "Variable",
+        title: "Variables",
         emoji: "📦",
         steps: [
             {
                 mascot: "🐱",
-                instruction: "Great work! Now let's talk about variables - one of the most important concepts in programming. A variable is like a labeled box in the computer's memory where you can store data. Think of it as a name tag for a value. We create variables using the assignment operator = (equals sign). This is NOT the same as math equals - it means 'take what's on the right side and store it in the name on the left side'. So 'age = 10' means 'create a box called age and put the number 10 inside it'. Later, when we say print(age) without quotes, Python looks inside the box called 'age' and uses whatever value is stored there. This is called variable reference or lookup.",
-                mission: "Create variable 'age' = 10, then print(age) to see it. No quotes around age in print!",
-                hint: "Line 1: age = 10\nLine 2: print(age)\nNotice no quotes around age in the print!",
-                starterCode: "# Create your variable\n\n\n",
+                instruction: "Variables store data using the assignment operator (=). The format is: name = value. To reference the stored value, use the variable name without quotes. Quoting the name creates a string literal instead of accessing the variable.",
+                mission: "Assign 10 to variable 'age', then print the variable",
+                hint: "age = 10\nprint(age)",
+                starterCode: "# Variable assignment\n\n\n",
                 validator: {
                     required: ["age", "=", "10", "print", "age"],
                     forbiddenCopy: ["Your Name"],
                     customCheck: (code) => {
                         if (code.includes("'age'") || code.includes('"age"')) {
-                            return { pass: false, msg: "Don't put quotes around age in print() - that prints the word 'age', not the box contents!" };
+                            return { pass: false, msg: "Remove quotes from age in print() to reference the variable" };
                         }
                         if (code.includes("print(10)")) {
-                            return { pass: false, msg: "Print the variable 'age', not the number 10 directly!" };
+                            return { pass: false, msg: "Print the variable, not the literal value" };
                         }
                         return { pass: true };
                     },
@@ -78,10 +77,10 @@ const levels = [
             },
             {
                 mascot: "🐱",
-                instruction: "Perfect! You referenced a variable. Now let's store text in a variable. When you assign text to a variable, you still need quotes around the text value - the quotes tell Python where the text starts and ends. The variable name itself (pet) never has quotes - that would make it a string literal instead of a variable name! Once you store 'dog' in the variable pet, you can use pet as many times as you want, and Python will always substitute it with 'dog'. This is powerful because if you want to change the value later, you only change it in one place (the assignment), and every reference automatically updates!",
-                mission: "pet = 'dog' (or cat/bird), then print(pet) two times on separate lines",
+                instruction: "Variables can store strings by assigning a quoted string value. The variable name is unquoted; only the value has quotes. Once assigned, the variable can be referenced multiple times.",
+                mission: "Assign 'dog' to 'pet', then print pet twice",
                 hint: "pet = 'dog'\nprint(pet)\nprint(pet)",
-                starterCode: "# Text variable\n\n\n\n",
+                starterCode: "# String variable\n\n\n\n",
                 validator: {
                     required: ["=", "print", "print"],
                     checkOutput: (out) => {
@@ -92,15 +91,15 @@ const levels = [
             },
             {
                 mascot: "🐱",
-                instruction: "Now for something cool - variables are mutable, meaning we can change their values after creation! This is called variable reassignment or updating. When you write 'score = 100', Python creates the variable. When you later write 'score = 50', Python finds the existing box labeled 'score', throws away the old value (100), and puts the new value (50) inside. The variable name stays the same, but the content changes. This is how programs keep track of changing state - like scores going up, health going down, or time passing. Notice how we can print the same variable name twice but get different outputs because the value changed between the print statements!",
-                mission: "Show that variables can change values",
+                instruction: "Variables can be reassigned to new values. The latest assignment overwrites the previous value. References to the variable return the current value at that point in execution.",
+                mission: "Set score to 100, print it, change score to 50, print again",
                 hint: "score = 100\nprint(score)\nscore = 50\nprint(score)",
-                starterCode: "# Changing values\n\n\n\n\n",
+                starterCode: "# Variable reassignment\n\n\n\n\n",
                 validator: {
                     required: ["=", "=", "print", "print"],
                     customCheck: (code) => {
                         const lines = code.split('\n').filter(l => l.trim() && !l.trim().startsWith('#'));
-                        if (lines.length < 4) return { pass: false, msg: "Need 4 lines: set, print, set, print" };
+                        if (lines.length < 4) return { pass: false, msg: "Required: assign, print, reassign, print" };
                         return { pass: true };
                     },
                     checkOutput: (out) => out.includes("100") && out.includes("50")
@@ -114,40 +113,40 @@ const levels = [
         steps: [
             {
                 mascot: "🐱",
-                instruction: "Syrius here! Python is also a powerful calculator. When you write mathematical expressions inside print(), Python evaluates (calculates) the expression first, then passes the result to print. The basic operators are: + for addition, - for subtraction, * for multiplication (asterisk, not x!), and / for division. Python follows the standard order of operations (PEMDAS): Parentheses, Exponents, Multiplication/Division, Addition/Subtraction. When you write print(15 + 27), Python first calculates that 15 + 27 equals 42, then print displays 42. This is expression evaluation - converting complex expressions into single values!",
+                instruction: "Python supports arithmetic operators: + (addition), - (subtraction), * (multiplication), / (division). Expressions inside parentheses are evaluated before being passed to functions.",
                 mission: "Calculate and print 15 + 27",
-                hint: "print(15 + 27) - spaces around + are nice but optional",
-                starterCode: "# Calculate here\n",
+                hint: "print(15 + 27)",
+                starterCode: "# Arithmetic\n",
                 validator: {
                     required: ["print(", "+", ")"],
                     checkOutput: (out) => out.includes("42"),
                     customCheck: (code) => {
-                        if (!code.includes("+")) return { pass: false, msg: "Use the + symbol!" };
+                        if (!code.includes("+")) return { pass: false, msg: "Use the + operator" };
                         return { pass: true };
                     }
                 }
             },
             {
                 mascot: "🐱",
-                instruction: "Amazing! Now let's combine variables with math - this is where programming gets really useful. When Python sees 'apples + oranges', it doesn't just concatenate text (unless they're strings) - it looks up the current values of both variables, retrieves the numbers stored inside them, performs the addition operation, and returns the sum. This is called binary operation (two operands). You can store the result in a new variable (like total = apples + oranges) or print it directly. Using variables instead of raw numbers makes your code flexible - if you change apples to 10 later, the math automatically updates without you having to recalculate anything!",
-                mission: "Add two variables together",
+                instruction: "Variables can be used in arithmetic expressions. Python substitutes the variable's value before applying the operator. The result can be printed directly.",
+                mission: "Add variables apples and oranges, then print the sum",
                 hint: "apples = 5\noranges = 3\nprint(apples + oranges)",
-                starterCode: "# Fruit calculator\n\n\n\n",
+                starterCode: "# Variable arithmetic\n\n\n\n",
                 validator: {
                     required: ["=", "=", "+", "print"],
                     checkOutput: (out) => out.includes("8"),
                     customCheck: (code) => {
-                        if (code.includes("print(8)")) return { pass: false, msg: "Add the variables together, don't just print 8!" };
+                        if (code.includes("print(8)")) return { pass: false, msg: "Use variables in the expression, not the result literal" };
                         return { pass: true };
                     }
                 }
             },
             {
                 mascot: "🐱",
-                instruction: "Multiplication time! The * operator (asterisk) multiplies values. Let's do something practical: calculating your age in months. There are 12 months in a year, so we multiply age by 12. When you write 'months = age * 12', Python follows this process: 1) Look up the value stored in 'age', 2) Multiply that number by 12, 3) Store the result in a new variable called 'months'. This demonstrates the power of variables - you can use them in expressions on the right side of equals signs, and Python substitutes the actual value at runtime (when the code runs). This makes calculations dynamic based on changing data!",
-                mission: "Calculate months old using multiplication (*)",
+                instruction: "Multiplication uses the * operator. Store a value, calculate a derived value using multiplication, then output the result.",
+                mission: "Calculate age in months (age * 12) and print it",
                 hint: "age = 10\nmonths = age * 12\nprint(months)",
-                starterCode: "# Your age in months\n\n\n\n",
+                starterCode: "# Multiplication\n\n\n\n",
                 validator: {
                     required: ["*", "print"],
                     checkOutput: (out) => {
@@ -164,30 +163,30 @@ const levels = [
         steps: [
             {
                 mascot: "🐱",
-                instruction: "Syrius here! Now for real interactivity! The input() function pauses your program and waits for the user to type something and press Enter. Whatever they type is returned as a string (text). The string inside the input() parentheses is called the 'prompt' - it's the message shown to tell the user what to type. When you write 'name = input('What is your name? ')', here's what happens: 1) Python displays the prompt, 2) Program waits for user input, 3) User types something and presses Enter, 4) That text becomes the return value, 5) The return value is stored in the variable 'name'. You can then use that variable just like any other string!",
-                mission: "Ask for name using input(), then print 'Hi' plus that name",
-                hint: "name = input('What is your name? ')\nprint('Hi', name)\nThe comma adds a space automatically!",
-                starterCode: "# Interactive program\n\n\n",
+                instruction: "input() reads user input from the console and returns it as a string. It accepts an optional prompt string argument. The return value must be assigned to a variable to be used later.",
+                mission: "Get user input for name, then print a greeting with that name",
+                hint: "name = input('What is your name? ')\nprint('Hi', name)",
+                starterCode: "# User input\n\n\n",
                 validator: {
                     required: ["input(", "print("],
                     customCheck: (code) => {
-                        if (!code.includes("=")) return { pass: false, msg: "Save the input in a variable using =" };
-                        if (code.includes("input()")) return { pass: false, msg: "Put a question inside input() like input('Name? ')" };
+                        if (!code.includes("=")) return { pass: false, msg: "Assign the input() return value to a variable" };
+                        if (code.includes("input()")) return { pass: false, msg: "Add a prompt string argument to input()" };
                         return { pass: true };
                     }
                 }
             },
             {
                 mascot: "🐱",
-                instruction: "Critical concept alert! The input() function ALWAYS returns a string (text), even if the user types numbers like '10'. If you try to do math with this string, Python will crash with a TypeError because you can't add text to numbers! To fix this, we use type conversion functions. int() converts a string to an integer (whole number). When you nest functions like int(input('Age? ')), Python executes from the inside out: 1) input() runs and returns a string '10', 2) int() converts that string to the number 10, 3) That number is stored in the variable. Now you can do math with it! This is called explicit type casting or conversion.",
-                mission: "Get age with input(), convert with int(), add 1, print result",
+                instruction: "input() returns strings. To perform math, convert the string to an integer using int(). Nest the functions: int(input(...)). This parses the string and returns a numeric type.",
+                mission: "Convert input to int, add 1, print the result",
                 hint: "age = int(input('Age? '))\nnext_year = age + 1\nprint(next_year)",
-                starterCode: "# Birthday calculator\n\n\n\n",
+                starterCode: "# Type conversion\n\n\n\n",
                 validator: {
                     required: ["int(", "input(", "+", "print"],
                     customCheck: (code) => {
                         if (code.includes("input(") && !code.includes("int(")) {
-                            return { pass: false, msg: "Wrap input() with int() to make it a number: int(input('...'))" };
+                            return { pass: false, msg: "Wrap input() with int() for numeric conversion" };
                         }
                         return { pass: true };
                     }
@@ -196,24 +195,24 @@ const levels = [
         ]
     },
     {
-        title: "Smart Choices",
+        title: "Control Flow",
         emoji: "🚦",
         steps: [
             {
                 mascot: "🐱",
-                instruction: "Syrius here! Let's talk about control flow - making decisions in code. The 'if' statement is a conditional structure. It checks if a condition is True or False. If True, it runs the indented code block underneath. If False, it skips that block. The condition uses comparison operators: > (greater than), < (less than), == (equal to), != (not equal), >= (greater or equal), <= (less or equal). Notice the colon (:) at the end of the if line - this is mandatory and tells Python 'hey, a code block is coming next!' The indented lines below form a code block (suite). Python uses indentation (whitespace) to define blocks, unlike other languages that use braces {}. Standard indentation is 4 spaces or 1 tab. This is significant whitespace - it affects how the code runs!",
-                mission: "Check if 10 > 5, if true print 'Yes!' (indented under if)",
-                hint: "if 10 > 5:\n    print('Yes!')\nThe spaces before print are required!",
-                starterCode: "# First if statement\n\n\n",
+                instruction: "if statements execute code conditionally. Syntax: if condition: followed by an indented block. The condition evaluates to True or False. The colon is required. Indentation (typically 4 spaces) defines the code block.",
+                mission: "Print 'Yes!' if 10 > 5 is True",
+                hint: "if 10 > 5:\n    print('Yes!')",
+                starterCode: "# Conditional\n\n\n",
                 validator: {
                     required: ["if", ":", "print"],
                     customCheck: (code) => {
-                        if (!code.includes(":")) return { pass: false, msg: "Don't forget the colon (:) after if!" };
+                        if (!code.includes(":")) return { pass: false, msg: "Add a colon after the condition" };
                         const lines = code.split('\n');
                         const ifLine = lines.findIndex(l => l.includes('if'));
                         const nextLine = lines[ifLine + 1];
                         if (!nextLine || (!nextLine.startsWith('    ') && !nextLine.startsWith('\t'))) {
-                            return { pass: false, msg: "Indent the print line with 4 spaces or Tab!" };
+                            return { pass: false, msg: "Indent the print statement" };
                         }
                         return { pass: true };
                     }
@@ -221,10 +220,10 @@ const levels = [
             },
             {
                 mascot: "🐱",
-                instruction: "Binary decisions! The 'else' clause catches everything when the 'if' condition is False. This creates a two-way branch: either the if-block runs, or the else-block runs, but never both. The else keyword lines up vertically with the if keyword (no indentation) to show they're at the same level. The colon after else is also required, followed by another indented block. This structure is called an if-else statement or conditional branching. It allows your program to choose between two different paths based on data. In our temperature example, we're categorizing data (hot vs cool) using a threshold value (30).",
-                mission: "Check if temp > 30, print 'Hot', else print 'Cool'",
+                instruction: "else provides an alternative block when the if condition is False. It aligns with the if (no indentation) and requires its own colon and indented block.",
+                mission: "Check if temp > 30: print 'Hot' if True, else print 'Cool'",
                 hint: "temp = 25\nif temp > 30:\n    print('Hot')\nelse:\n    print('Cool')",
-                starterCode: "# Temperature checker\n\n\n\n\n\n",
+                starterCode: "# If-else\n\n\n\n\n\n",
                 validator: {
                     required: ["if", "else", ":", ":", "print", "print"],
                     checkOutput: (out) => out.toLowerCase().includes("hot") || out.toLowerCase().includes("cool")
@@ -232,15 +231,15 @@ const levels = [
             },
             {
                 mascot: "🐱",
-                instruction: "Multiple choices with elif! 'elif' is short for 'else if' - it checks another condition if the first if was False. You can chain multiple elif statements between if and else. Python checks conditions from top to bottom: 1) Is the if condition True? If yes, run that block and skip the rest. 2) If not, check the first elif. If True, run that block and skip the rest. 3) Continue down the chain. 4) If nothing was True, run the else block. Notice we use == (double equals) for comparison, not = (single equals). Single equals is for assignment, double equals checks for equality. This entire structure is called an if-elif-else ladder or cascade.",
-                mission: "Use if, elif, and else together with proper indentation",
+                instruction: "elif (else if) checks additional conditions between if and else. Python evaluates top-down and executes the first True block only. Use == for equality comparison (not =).",
+                mission: "Classify score: 100 (perfect), >50 (pass), else (fail)",
                 hint: "if score == 100:\n    print('Perfect')\nelif score > 50:\n    print('Pass')\nelse:\n    print('Fail')",
-                starterCode: "# Grade checker\nscore = 75\n\n\n\n\n\n",
+                starterCode: "# If-elif-else\nscore = 75\n\n\n\n\n\n",
                 validator: {
                     required: ["if", "elif", "else"],
                     customCheck: (code) => {
                         const colons = (code.match(/:/g) || []).length;
-                        if (colons < 3) return { pass: false, msg: "Need 3 colons total (one for if, elif, and else)!" };
+                        if (colons < 3) return { pass: false, msg: "Each clause needs a colon" };
                         return { pass: true };
                     }
                 }
@@ -248,20 +247,20 @@ const levels = [
         ]
     },
     {
-        title: "Repeat After Me",
+        title: "Iteration",
         emoji: "🔁",
         steps: [
             {
                 mascot: "🐱",
-                instruction: "Loops! Loops allow us to repeat code without writing it multiple times. The 'for' loop iterates (goes through) a sequence. 'for i in range(3):' means 'run the indented block 3 times, with i being 0, then 1, then 2'. The range(3) creates a sequence [0, 1, 2]. The variable 'i' is called the iterator or loop variable - it takes on each value in the sequence one at a time. range(n) generates numbers from 0 up to (but not including) n. So range(3) gives 0, 1, 2. This is zero-indexed counting (common in programming). The colon after range() is mandatory, and the loop body must be indented just like if statements!",
-                mission: "Use for loop to print 'Hello' 3 times",
-                hint: "for i in range(3):\n    print('Hello')\nWatch the colon and indentation!",
-                starterCode: "# My first loop\n\n\n",
+                instruction: "for loops iterate over sequences. 'for i in range(n):' repeats n times with i taking values 0 to n-1. range(3) generates [0, 1, 2]. Requires colon and indented block.",
+                mission: "Print 'Hello' 3 times using a for loop",
+                hint: "for i in range(3):\n    print('Hello')",
+                starterCode: "# For loop\n\n\n",
                 validator: {
                     required: ["for", "in", "range(", "print"],
                     customCheck: (code) => {
-                        if (!code.includes(":")) return { pass: false, msg: "Colon after range()!" };
-                        if (!code.includes("    ") && !code.includes("\t")) return { pass: false, msg: "Indent the print line!" };
+                        if (!code.includes(":")) return { pass: false, msg: "Add a colon after range()" };
+                        if (!code.includes("    ") && !code.includes("\t")) return { pass: false, msg: "Indent the loop body" };
                         return { pass: true };
                     },
                     checkOutput: (out) => {
@@ -272,10 +271,10 @@ const levels = [
             },
             {
                 mascot: "🐱",
-                instruction: "Using the loop variable! Instead of printing the same thing every time, we can print the variable 'i' to see it change. Remember, range(3) produces 0, 1, 2 by default. But what if we want to start at 1? Use range(start, stop)! range(1, 6) starts at 1 and stops BEFORE 6, giving us 1, 2, 3, 4, 5. This is called the half-open interval - it includes the start but excludes the stop. This is perfect for 'counting to 5' because it stops right before 6. You can use the loop variable in expressions too, like print(i * 2) to count by twos!",
+                instruction: "Use the loop variable in the body. range(start, stop) generates from start (inclusive) to stop (exclusive). range(1, 6) gives 1, 2, 3, 4, 5.",
                 mission: "Print numbers 1 through 5 using range(1, 6)",
-                hint: "range(1, 6) gives 1,2,3,4,5. It stops BEFORE the second number!",
-                starterCode: "# Counting 1-5\n\n\n",
+                hint: "range(1, 6) stops before the second number",
+                starterCode: "# Range with start\n\n\n",
                 validator: {
                     required: ["range(", "print"],
                     checkOutput: (out) => {
@@ -285,16 +284,15 @@ const levels = [
             },
             {
                 mascot: "🐱",
-                instruction: "While loops! Unlike for loops that iterate over a sequence, while loops run based on a condition - 'while this condition is True, keep running'. This is called conditional iteration. You must initialize (create and set) a variable before the loop, check it in the condition, and update it inside the loop. If you forget to update the variable (x = x + 1), the condition never becomes False, creating an infinite loop that crashes the program! The pattern is: initialize, while condition:, do work, increment. This is perfect for when you don't know exactly how many times to repeat, but you know when to stop (like 'keep guessing until correct').",
-                mission: "Count 1 to 5 using while loop",
+                instruction: "while loops execute while a condition remains True. You must initialize the variable, test it in the condition, and modify it inside the loop to ensure termination.",
+                mission: "Count 1 to 5 using a while loop",
                 hint: "x = 1\nwhile x <= 5:\n    print(x)\n    x = x + 1",
-                starterCode: "# While loop countdown\n\n\n\n\n\n",
+                starterCode: "# While loop\n\n\n\n\n\n",
                 validator: {
                     required: ["while", "print"],
                     customCheck: (code) => {
-                        // Check they update the variable
                         if ((!code.includes("+") && !code.includes("-")) || !code.includes("=")) {
-                            return { pass: false, msg: "You need to change x inside the loop or it runs forever!" };
+                            return { pass: false, msg: "Modify the loop variable inside the body to prevent infinite loops" };
                         }
                         return { pass: true };
                     }
@@ -416,21 +414,21 @@ async function runCode() {
         
     } catch (err) {
         let msg = err.message;
-        // Kid-friendly translations
+        // Concise error messages
         if (msg.includes("IndentationError")) {
-            msg = "❌ Check your spaces! Python needs exactly 4 spaces (or Tab) for indentation.";
+            msg = "❌ IndentationError: Check indentation (4 spaces)";
         } else if (msg.includes("SyntaxError") && msg.includes("EOF")) {
-            msg = "❌ You forgot to close something! Missing ) or : or \" ?";
+            msg = "❌ SyntaxError: Unclosed bracket or quote";
         } else if (msg.includes("SyntaxError")) {
-            msg = "❌ Grammar mistake! Check for colons (:), quotes, and parentheses.";
+            msg = "❌ SyntaxError: Check colons and syntax";
         } else if (msg.includes("NameError")) {
             const match = msg.match(/name '(\w+)'/);
             const name = match ? match[1] : "that";
-            msg = `❌ I don't know '${name}'. Did you spell it right? Or did you forget to create it?`;
+            msg = `❌ NameError: '${name}' undefined`;
         } else if (msg.includes("TypeError") && msg.includes("int")) {
-            msg = "❌ You can't do math with text! Use int() to convert: int(input('...'))";
+            msg = "❌ TypeError: Convert with int() first";
         } else if (msg.includes("RecursionError") || msg.includes("maximum recursion")) {
-            msg = "❌ Infinite loop detected! Make sure you change your variable inside the while loop.";
+            msg = "❌ Infinite loop: update your variable";
         } else {
             msg = "❌ " + msg;
         }
@@ -463,7 +461,7 @@ function validateStep(step, code, output, simulatedInput) {
         val.forbiddenCopy.forEach(forbidden => {
             if (code.includes(forbidden)) {
                 passed = false;
-                messages.push("Don't just copy the example - type it yourself with your own ideas!");
+                messages.push("Use your own values");
             }
         });
     }
@@ -473,7 +471,7 @@ function validateStep(step, code, output, simulatedInput) {
         val.forbidden.forEach(f => {
             if (code.includes(f)) {
                 passed = false;
-                messages.push(`Should not use: ${f} for this challenge`);
+                messages.push(`Remove: ${f}`);
             }
         });
     }
@@ -492,7 +490,7 @@ function validateStep(step, code, output, simulatedInput) {
         const checkResult = val.checkOutput(outputClean, code);
         if (!checkResult) {
             passed = false;
-            if (messages.length === 0) messages.push("Output doesn't look right yet!");
+            if (messages.length === 0) messages.push("Check output");
         }
     }
     
@@ -500,7 +498,7 @@ function validateStep(step, code, output, simulatedInput) {
     if (passed) {
         document.getElementById('nextBtn').disabled = false;
         const outputEl = document.getElementById('output');
-        outputEl.innerHTML += '\n<span class="success-text">✅ Perfect! You did it!</span>';
+        outputEl.innerHTML += '\n<span class="success-text">✅ Correct</span>';
         
         // Check if level complete
         if (currentStep === levels[currentLevel].steps.length - 1) {
@@ -509,7 +507,7 @@ function validateStep(step, code, output, simulatedInput) {
             }
             updateProgress();
             setTimeout(() => {
-                document.getElementById('successMessage').textContent = `You completed ${levels[currentLevel].title}!`;
+                document.getElementById('successMessage').textContent = `${levels[currentLevel].title} Complete`;
                 document.getElementById('successModal').style.display = 'flex';
             }, 800);
         }
@@ -552,7 +550,7 @@ function closeSuccess() {
         document.getElementById('learningArea').style.display = 'grid';
         document.getElementById('levelMap').style.display = 'none';
     } else {
-        alert("🎉🎉🎉 YOU'RE A PYTHON MASTER! 🎉🎉🎉\n\nYou finished all 6 levels!");
+        alert("Course Complete");
     }
 }
 

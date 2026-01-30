@@ -1,11 +1,11 @@
 :root {
-    --primary: #FFB347;
+    --primary: #a047ff;
     --secondary: #87CEEB;
     --success: #77DD77;
-    --error: #FF6961;
+    --error: #9661ff;
     --purple: #B19CD9;
-    --dark: #2C3E50;
-    --light: #FFF8DC;
+    --dark: #3a2c50;
+    --light: #f5dcff;
 }
 
 * {
@@ -67,7 +67,7 @@ body {
 
 .loading-bar {
     height: 100%;
-    background: linear-gradient(90deg, #FFD700, #FFA500);
+    background: linear-gradient(90deg, #8800ff, #e100ff);
     width: 0%;
     transition: width 0.3s;
     border-radius: 50px;
@@ -118,7 +118,7 @@ h1 {
 }
 
 .progress-container {
-    background: white;
+    background: rgb(172, 127, 255);
     border-radius: 50px;
     padding: 15px;
     margin: 20px auto;
@@ -170,21 +170,21 @@ h1 {
 
 .btn {
     background: var(--primary);
-    color: white;
+    color: rgb(248, 223, 255);
     border: none;
     padding: 15px 30px;
     font-family: 'Fredoka', sans-serif;
     font-size: 1.2rem;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 5px 0 #E69A2E, 0 10px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 0 #592ee6, 0 10px 10px rgba(0,0,0,0.1);
     transition: all 0.1s;
     font-weight: 600;
 }
 
 .btn:active {
     transform: translateY(5px);
-    box-shadow: 0 0 0 #E69A2E;
+    box-shadow: 0 0 0 #b52ee6;
 }
 
 .btn.secondary {
@@ -217,7 +217,7 @@ h1 {
 
 .running-indicator {
     display: none;
-    color: #FFD700;
+    color: #dd00ff;
     font-weight: bold;
     animation: pulse 1s infinite;
 }
@@ -245,7 +245,7 @@ h1 {
 }
 
 .card {
-    background: white;
+    background: rgb(244, 213, 255);
     border-radius: 30px;
     padding: 30px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -273,7 +273,7 @@ h1 {
 .mascot {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var(--primary), #FF8C42);
+    background: linear-gradient(135deg, var(--primary), #c642ff);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -313,7 +313,7 @@ h1 {
 }
 
 .hint-box {
-    background: #E3F2FD;
+    background: #f5e3fd;
     border-left: 5px solid var(--secondary);
     padding: 15px;
     margin-top: 15px;
@@ -330,7 +330,7 @@ h1 {
 .mission-box {
     margin-top: 20px;
     padding: 20px;
-    background: #FFFACD;
+    background: #f9cdff;
     border-radius: 15px;
     border: 2px dashed var(--primary);
 }
@@ -375,8 +375,8 @@ h1 {
     border-radius: 15px;
     padding: 20px;
     min-height: 120px;
-    border: 2px solid #444;
-    color: #CE9178;
+    border: 2px solid #444444;
+    color: #ce78cb;
 }
 
 .output-header {
@@ -425,7 +425,7 @@ h1 {
 }
 
 .level-node {
-    background: white;
+    background: rgb(251, 221, 255);
     border-radius: 20px;
     padding: 25px 15px;
     text-align: center;
@@ -445,8 +445,8 @@ h1 {
 }
 
 @keyframes glow {
-    0%, 100% { box-shadow: 0 0 5px rgba(255,179,71,0.5); }
-    50% { box-shadow: 0 0 20px rgba(255,179,71,0.8); }
+    0%, 100% { box-shadow: 0 0 5px rgba(224, 71, 255, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(197, 71, 255, 0.8); }
 }
 
 .level-node.completed {
