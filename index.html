@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Nebula Coding Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="snake-animation">🐍</div>
+            <h2>Loading Python Engine...</h2>
+            <div class="loading-bar-container">
+                <div class="loading-bar" id="loading-bar"></div>
+            </div>
+            <p class="loading-text">Preparing your coding station...</p>
+            <p class="loading-subtext">(One-time setup, takes 15-25 seconds)</p>
+        </div>
+    </div>
+
+    <div id="app" style="display: none;">
+        <div class="container">
+            <header>
+                <h1>The Nebula Coding Academy</h1>
+                <p class="subtitle">Learn to code with Syrius the Astronaut!</p>
+                <div class="progress-container">
+                    <span class="level-badge">Level Progress:</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span id="progressText">0/6</span>
+                </div>
+
+                <div class="step-tracker" id="stepTracker">Step 1 of 17</div>
+
+                <div class="nav-buttons">
+                    <button class="btn" onclick="toggleLevelMap()">🗺️ Level Map</button>
+                    <button class="btn secondary" onclick="showHint()">💡 Hint</button>
+                    <button class="btn success" id="runBtn" onclick="runCode()">▶️ Run My Code</button>
+                    <button class="btn" id="nextBtn" onclick="nextStep()" disabled>Next ⭐</button>
+                </div>
+            </header>
+
+            <div class="level-map" id="levelMap"></div>
+
+            <div class="learning-area" id="learningArea">
+                <div class="card instruction-card">
+                    <div class="mascot-container">
+                        <div class="mascot" id="mascotEmoji">🐱</div>
+                        <div class="speech-bubble" id="instructionText">Welcome!</div>
+                    </div>
+                    
+                    <div class="hint-box" id="hintBox">
+                        <strong>💡 Cody's Tip:</strong>
+                        <span id="hintText"></span>
+                    </div>
+
+                    <div class="mission-box">
+                        <h3>🎯 Your Mission:</h3>
+                        <p id="missionText">Loading...</p>
+                    </div>
+                </div>
+
+                <div class="card code-card">
+                    <div class="editor-header">
+                        <span>📝 Python Editor</span>
+                        <button class="btn reset-btn" onclick="resetCode()">🔄 Reset</button>
+                    </div>
+                    <textarea class="code-input" id="pythonCode" spellcheck="false"></textarea>
+                    
+                    <div class="output-box">
+                        <div class="output-header">
+                            <span>💻 Output Console</span>
+                            <span class="running-indicator" id="runningIndicator">⚡ Running...</span>
+                        </div>
+                        <div class="output-content" id="output">Click "Run My Code" when ready!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="confetti">🎉🏆🎊</div>
+            <h2>Level Complete!</h2>
+            <p id="successMessage">You're doing great!</p>
+            <button class="btn success" onclick="closeSuccess()">Continue 🚀</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
